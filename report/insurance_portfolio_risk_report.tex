@@ -1,0 +1,106 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}   % For including images
+\usepackage{float}  % Allows [H] to fix figure placement
+\usepackage{booktabs}   % For nicer tables
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{caption}
+
+\title{Insurance Portfolio Risk Analysis}
+\author{Lindokuhle Ncini}
+\date{30 March 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This project analyzes an insurance portfolio to determine its \textbf{risk exposure}. 
+We calculated \textbf{expected losses, Value at Risk (VaR), Conditional VaR (CVaR)}, 
+and conducted a \textbf{Monte Carlo simulation} to assess potential extreme losses. 
+Graphs and summary tables illustrate key findings.
+
+\section{Portfolio Overview}
+
+The dataset contains multiple insurance policies with the following columns:
+
+\begin{itemize}
+    \item \texttt{policy\_id} -- unique policy identifier
+    \item \texttt{exposure} -- monetary exposure of each policy
+    \item \texttt{loss\_prob} -- probability of loss
+    \item \texttt{losses} -- expected loss
+\end{itemize}
+
+\section{Summary Statistics}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Expected Loss & 2,528,305.57 \\
+Analytical 95\% VaR & 7,119.42 \\
+Analytical 95\% CVaR & 8,572.66 \\
+Monte Carlo Mean Loss & 2,529,849.40 \\
+Monte Carlo 95\% VaR & 2,981,595.75 \\
+Monte Carlo 99\% VaR & 3,177,618.88 \\
+\bottomrule
+\end{tabular}
+\caption{Summary of key portfolio risk metrics.}
+\end{table}
+
+\section{Visual Analysis}
+
+\subsection{Loss Distribution with VaR and CVaR}
+
+The histogram shows how expected losses are distributed across policies. 
+Red dashed line = 95\% VaR, Orange dashed line = 95\% CVaR.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{loss_distribution.png}
+\caption{Loss distribution with VaR and CVaR.}
+\end{figure}
+
+\subsection{Monte Carlo Simulation of Total Losses}
+
+Shows 10,000 simulated portfolio outcomes. Red line = 95\% VaR, Orange line = 99\% VaR. 
+Highlights extreme loss scenarios.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{monte_carlo_losses.png}
+\caption{Monte Carlo simulation of total portfolio losses.}
+\end{figure}
+
+
+
+\section{Key Findings}
+
+\begin{itemize}
+    \item Total Expected Loss gives the expected total loss for the portfolio.
+    \item 95\% VaR indicates the loss threshold not expected to be exceeded in 95\% of cases.
+    \item 95\% CVaR shows the average of the worst 5\% of losses, highlighting extreme risk.
+    \item Monte Carlo simulation confirms analytical metrics and provides a visual understanding of extreme loss scenarios.
+\end{itemize}
+
+\section{Conclusion}
+
+The portfolio exhibits predictable expected losses, but extreme scenarios can lead to substantially higher losses. 
+Management should focus on high-exposure, high-probability policies to mitigate risk.
+
+\newpage  % Forces references to appear on a separate page
+\section*{References}
+
+\begin{enumerate}
+    \item Hull, J. (2021) \textit{Risk Management and Financial Institutions}, 5th edition. Hoboken: Wiley.
+    \item Glasserman, P. (2003) \textit{Monte Carlo Methods in Financial Engineering}. New York: Springer.
+    \item McNeil, R., Frey, R. and Embrechts, P. (2015) \textit{Quantitative Risk Management: Concepts, Techniques and Tools}, 2nd edition. Princeton: Princeton University Press.
+
+    \item Basel Committee on Banking Supervision (2011) \textit{Principles for the Sound Management of Operational Risk}. Basel: Bank for International Settlements.
+\end{enumerate}
+
+\end{document}
